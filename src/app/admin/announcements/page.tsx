@@ -1,9 +1,63 @@
+
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BellPlus, Edit3, Trash2 } from "lucide-react";
-import Image from "next/image";
+import { BellPlus, Edit3, Trash2, PlusCircle, Eye } from "lucide-react";
+import Link from "next/link";
+import { getAnnouncements, deleteAnnouncement } from "./actions";
+import type { Announcement } from "@/types";
+import { Timestamp } from "firebase/firestore";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { AnnouncementForm } from "@/components/admin/announcements/AnnouncementForm";
+import { DeleteButton } from "@/components/shared/DeleteButton";
 
-export default function AdminAnnouncementsPage() {
+function AnnouncementItem({ announcement }: { announcement: Announcement }) {
+  const handleDelete = async () => {
+    // This action is now handled by DeleteButton's server action prop
+  };
+
+  return (
+    <Card className="mb-4 shadow-md">
+      <CardHeader>
+        <div className="flex justify-between items-start">
+          <div>
+            <CardTitle className="text-xl">{announcement.title}</CardTitle>
+            <CardDescription>
+              Type: {announcement.type} | Date: {(announcement.date as Timestamp).toDate().toLocaleDateString()} | Status: {announcement.published ? "Published" : "Draft"}
+            </CardDescription>
+             {announcement.targetRoles && announcement.targetRoles.length > 0 && (
+              <CardDescription className="text-xs">
+                Targeted Roles: {announcement.targetRoles.join(", ")}
+              </CardDescription>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <Link href={`/admin/announcements/${announcement.id}/edit`}>
+              <Button variant="outline" size="sm"><Edit3 className="mr-2 h-4 w-4" /> Edit</Button>
+            </Link>
+            <DeleteButton itemId={announcement.id} itemName={announcement.title} deleteAction={deleteAnnouncement} />
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className="text-muted-foreground whitespace-pre-wrap">{announcement.content}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+export default async function AdminAnnouncementsPage() {
+  const announcements = await getAnnouncements();
+
   return (
     <div className="space-y-6">
       <Card className="shadow-lg">
@@ -13,29 +67,33 @@ export default function AdminAnnouncementsPage() {
               <BellPlus className="h-8 w-8 text-primary" />
               <CardTitle className="text-2xl">Manage Announcements</CardTitle>
             </div>
-            <Button>
-              <BellPlus className="mr-2 h-4 w-4" /> Create New Announcement
-            </Button>
+            <Link href="/admin/announcements/new">
+              <Button>
+                <PlusCircle className="mr-2 h-4 w-4" /> Create New Announcement
+              </Button>
+            </Link>
           </div>
           <CardDescription>Create, edit, publish, and target announcements to specific user roles or dorms.</CardDescription>
         </CardHeader>
-        <CardContent className="text-center py-12">
-           <Image 
-            src="https://picsum.photos/seed/announcements-admin/400/250" 
-            alt="Announcements Management Placeholder" 
-            width={400} 
-            height={250} 
-            className="mx-auto rounded-lg mb-6"
-            data-ai-hint="communication megaphone"
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-            />
-          <h3 className="text-xl font-semibold mb-2">Announcement Management Feature Coming Soon</h3>
-          <p className="text-muted-foreground">This section will allow admins to control all announcements within DormFlow.</p>
-          <div className="mt-4 flex justify-center gap-4">
-            <Button variant="outline"><Edit3 className="mr-2 h-4 w-4" /> Edit Existing</Button>
-            <Button variant="destructive"><Trash2 className="mr-2 h-4 w-4" /> Delete Selected</Button>
-          </div>
+        <CardContent>
+          {announcements.length === 0 ? (
+            <div className="text-center py-12">
+              <BellPlus className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No Announcements Yet</h3>
+              <p className="text-muted-foreground mb-4">Get started by creating your first announcement.</p>
+              <Link href="/admin/announcements/new">
+                <Button>
+                  <PlusCircle className="mr-2 h-4 w-4" /> Create New Announcement
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {announcements.map((ann) => (
+                <AnnouncementItem key={ann.id} announcement={ann} />
+              ))}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

@@ -1,5 +1,6 @@
+
 import { AnnouncementsFeed } from '@/components/dashboard/shared/AnnouncementsFeed';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Bell } from 'lucide-react';
 
 export default function StudentAnnouncementsPage() {
@@ -14,7 +15,8 @@ export default function StudentAnnouncementsPage() {
           <CardDescription>Stay updated with all notices, events, and important information from the hostel administration.</CardDescription>
         </CardHeader>
       </Card>
-      <AnnouncementsFeed />
+      {/* AnnouncementsFeed is now client-side and fetches its own data */}
+      <AnnouncementsFeed /> 
     </div>
   );
 }

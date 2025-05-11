@@ -1,3 +1,4 @@
+
 import type { ReactNode } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import type { NavItem } from '@/types';
@@ -11,6 +12,7 @@ const studentNavItems: NavItem[] = [
   { href: '/student/complaints', label: 'Complaints/Requests', icon: 'AlertTriangle' },
   { href: '/student/chat', label: 'Chat with Staff', icon: 'MessageSquare' },
   { href: '/student/announcements', label: 'Announcements', icon: 'Bell' },
+  { href: '/student/settings', label: 'My Settings', icon: 'Settings' },
   { href: '/directory', label: 'Directory', icon: 'BookUser' },
 ];
 
@@ -25,4 +27,3 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
     </AppLayout>
   );
 }
-

@@ -1,3 +1,4 @@
+
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +14,7 @@ export default function StudentChatPage() {
             <MessageSquare className="h-8 w-8 text-primary" />
             <CardTitle className="text-2xl">Chat with Hostel Staff</CardTitle>
           </div>
-          <CardDescription>Communicate directly with hostel staff for your queries and assistance.</CardDescription>
+          <CardDescription>Communicate directly with hostel staff for your queries and assistance. Firebase is connected, but real-time chat functionality is under development.</CardDescription>
         </CardHeader>
         <CardContent className="py-8">
           <div className="border rounded-lg h-[500px] flex flex-col">
@@ -42,12 +43,12 @@ export default function StudentChatPage() {
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                     />
-                <p className="text-muted-foreground">Full chat functionality is under development.</p>
+                <p className="text-muted-foreground">Full chat functionality with Firebase (e.g., Firestore listeners for real-time messages) is under development.</p>
               </div>
             </div>
             <div className="p-4 border-t flex items-center gap-2">
-              <Input type="text" placeholder="Type your message..." className="flex-grow" />
-              <Button size="icon">
+              <Input type="text" placeholder="Type your message..." className="flex-grow" disabled />
+              <Button size="icon" disabled>
                 <Send className="h-5 w-5" />
               </Button>
             </div>

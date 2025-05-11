@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -13,9 +14,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar'; // Use existing sidebar
+import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar'; 
 import type { UserRole } from '@/types';
-import { LogOut, UserCircle, Settings, Bell } from 'lucide-react';
+import { LogOut, UserCircle, Settings, Bell, UserCog } from 'lucide-react'; // Added UserCog
 import { useEffect, useState } from 'react';
 
 interface AppHeaderProps {
@@ -26,7 +27,7 @@ interface AppHeaderProps {
 export function AppHeader({ userRole, userName }: AppHeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const { isMobile } = useSidebar(); // Get isMobile from useSidebar context
+  const { isMobile } = useSidebar(); 
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export function AppHeader({ userRole, userName }: AppHeaderProps) {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('userRole'); // Clear mock auth state
+    localStorage.removeItem('userRole'); 
     router.push('/login');
   };
 
@@ -47,6 +48,10 @@ export function AppHeader({ userRole, userName }: AppHeaderProps) {
   };
 
   const capitalizedRole = userRole.charAt(0).toUpperCase() + userRole.slice(1);
+  
+  // Determine profile icon based on role
+  const ProfileIcon = userRole === 'admin' ? UserCog : UserCircle;
+
 
   if (!mounted) {
     return (
@@ -72,14 +77,14 @@ export function AppHeader({ userRole, userName }: AppHeaderProps) {
         </Link>
       </div>
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" aria-label="Notifications">
+        <Button variant="ghost" size="icon" aria-label="Notifications" onClick={() => router.push(`/${userRole}/announcements`)}>
           <Bell className="h-5 w-5" />
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-9 w-9 rounded-full">
               <Avatar className="h-9 w-9">
-                <AvatarImage src={`https://picsum.photos/seed/${userName}/40/40`} alt={userName} data-ai-hint="profile person" />
+                <AvatarImage src={`https://picsum.photos/seed/${userName.replace(/\s+/g, '-')}/40/40`} alt={userName} data-ai-hint="profile person" />
                 <AvatarFallback>{getInitials(userName)}</AvatarFallback>
               </Avatar>
             </Button>
@@ -94,11 +99,11 @@ export function AppHeader({ userRole, userName }: AppHeaderProps) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => router.push(`/${userRole}/profile`)}> {/* Placeholder profile link */}
-              <UserCircle className="mr-2 h-4 w-4" />
+            <DropdownMenuItem onClick={() => router.push(`/${userRole}/profile`)}>
+              <ProfileIcon className="mr-2 h-4 w-4" />
               Profile
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => router.push(`/${userRole}/settings`)}> {/* Placeholder settings link */}
+            <DropdownMenuItem onClick={() => router.push(`/${userRole}/settings`)}>
               <Settings className="mr-2 h-4 w-4" />
               Settings
             </DropdownMenuItem>
