@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Briefcase, CheckCircle, XCircle } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function AdminBookingsPage() {
   return (
