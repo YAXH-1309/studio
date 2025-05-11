@@ -12,16 +12,42 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarFooter,
-  SidebarTrigger,
+  // SidebarTrigger, // SidebarTrigger is in AppHeader for mobile
   useSidebar,
 } from '@/components/ui/sidebar';
 import { Button } from '../ui/button';
-import { PanelLeftClose, PanelRightClose } from 'lucide-react';
+import { 
+  PanelLeftClose, PanelRightClose, LayoutDashboard, Users, Building, Bell, Briefcase, Settings, BarChart3, BookUser, UserCircle, BedDouble, FileText, MessageSquare, UploadCloud, AlertTriangle, Wrench, Archive, CalendarDays, BarChart2, UserSearch, ShieldCheck, Bed, type LucideIcon
+} from 'lucide-react';
 
 interface SidebarNavigationProps {
   navItems: NavItem[];
   userRole: string; // e.g., "admin", "student"
 }
+
+const iconComponents: { [key: string]: LucideIcon } = {
+  LayoutDashboard,
+  Users,
+  Building,
+  Bell,
+  Briefcase,
+  Settings,
+  BarChart3,
+  BookUser,
+  UserCircle,
+  BedDouble,
+  FileText,
+  MessageSquare,
+  UploadCloud,
+  AlertTriangle,
+  Wrench,
+  Archive,
+  CalendarDays,
+  BarChart2,
+  UserSearch,
+  ShieldCheck,
+  Bed,
+};
 
 export function SidebarNavigation({ navItems, userRole }: SidebarNavigationProps) {
   const pathname = usePathname();
@@ -31,9 +57,6 @@ export function SidebarNavigation({ navItems, userRole }: SidebarNavigationProps
     if (item.matchExact) {
       return pathname === item.href;
     }
-    // For non-exact matches, check if current path starts with item's href.
-    // This is useful for parent items of nested routes.
-    // Ensure that for root dashboard paths (e.g. /admin), it only matches exactly.
     if (item.href === `/${userRole}`) {
         return pathname === item.href;
     }
@@ -56,22 +79,29 @@ export function SidebarNavigation({ navItems, userRole }: SidebarNavigationProps
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
-          {navItems.map((item) => (
-            <SidebarMenuItem key={item.href}>
-              <Link href={item.href} legacyBehavior passHref>
-                <SidebarMenuButton
-                  asChild
-                  isActive={isActive(item)}
-                  tooltip={state === "collapsed" ? item.label : undefined}
-                >
-                  <a>
-                    <item.icon />
-                    <span>{item.label}</span>
-                  </a>
-                </SidebarMenuButton>
-              </Link>
-            </SidebarMenuItem>
-          ))}
+          {navItems.map((item) => {
+            const IconComponent = iconComponents[item.icon];
+            if (!IconComponent) {
+              console.warn(`Icon not found for name: ${item.icon}`);
+              return null; // Or render a default fallback icon
+            }
+            return (
+              <SidebarMenuItem key={item.href}>
+                <Link href={item.href} legacyBehavior passHref>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={isActive(item)}
+                    tooltip={state === "collapsed" ? item.label : undefined}
+                  >
+                    <a>
+                      <IconComponent />
+                      <span>{item.label}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </Link>
+              </SidebarMenuItem>
+            );
+          })}
         </SidebarMenu>
       </SidebarContent>
       {state === "expanded" && (

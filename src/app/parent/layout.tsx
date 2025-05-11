@@ -1,13 +1,12 @@
 import type { ReactNode } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import type { NavItem } from '@/types';
-import { LayoutDashboard, ShieldCheck, Bell, BookUser, UserSearch } from 'lucide-react';
 
 const parentNavItems: NavItem[] = [
-  { href: '/parent', label: 'Dashboard', icon: LayoutDashboard, matchExact: true },
-  { href: '/parent/student-info', label: "Child's Info", icon: UserSearch },
-  { href: '/parent/announcements', label: 'Announcements', icon: Bell },
-  { href: '/directory', label: 'Hostel Directory', icon: BookUser },
+  { href: '/parent', label: 'Dashboard', icon: 'LayoutDashboard', matchExact: true },
+  { href: '/parent/student-info', label: "Child's Info", icon: 'UserSearch' },
+  { href: '/parent/announcements', label: 'Announcements', icon: 'Bell' },
+  { href: '/directory', label: 'Hostel Directory', icon: 'BookUser' },
 ];
 
 export default function ParentLayout({ children }: { children: React.ReactNode }) {
@@ -21,3 +20,4 @@ export default function ParentLayout({ children }: { children: React.ReactNode }
     </AppLayout>
   );
 }
+

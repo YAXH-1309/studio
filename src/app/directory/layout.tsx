@@ -4,7 +4,8 @@ import type { ReactNode} from 'react';
 import { useEffect, useState } from 'react';
 import AppLayout from '@/components/layout/AppLayout';
 import type { NavItem, UserRole } from '@/types';
-import { LayoutDashboard, Users, Building, Bell, Briefcase, Settings, BarChart3, BookUser, UserCircle, BedDouble, FileText, MessageSquare, UploadCloud, AlertTriangle, Wrench, Archive, CalendarDays, UserSearch, ShieldCheck } from 'lucide-react';
+// Icon names will be used and mapped in SidebarNavigation component
+// import { LayoutDashboard, Users, Building, Bell, Briefcase, Settings, BarChart3, BookUser, UserCircle, BedDouble, FileText, MessageSquare, UploadCloud, AlertTriangle, Wrench, Archive, CalendarDays, UserSearch, ShieldCheck, BarChart2 } from 'lucide-react';
 
 // Helper to get NavItems based on role
 const getNavItemsForRole = (role: UserRole | null): NavItem[] => {
@@ -12,45 +13,45 @@ const getNavItemsForRole = (role: UserRole | null): NavItem[] => {
   switch (role) {
     case 'admin':
       return [
-        { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, matchExact: true },
-        { href: '/admin/users', label: 'User Management', icon: Users },
-        { href: '/admin/rooms', label: 'Room Management', icon: Building },
-        { href: '/admin/bookings', label: 'Bookings', icon: Briefcase },
-        { href: '/admin/announcements', label: 'Manage Announcements', icon: Bell },
-        { href: '/admin/reports', label: 'Reports', icon: BarChart3 },
-        { href: '/admin/settings', label: 'System Settings', icon: Settings },
-        { href: '/directory', label: 'Directory', icon: BookUser },
+        { href: '/admin', label: 'Dashboard', icon: 'LayoutDashboard', matchExact: true },
+        { href: '/admin/users', label: 'User Management', icon: 'Users' },
+        { href: '/admin/rooms', label: 'Room Management', icon: 'Building' },
+        { href: '/admin/bookings', label: 'Bookings', icon: 'Briefcase' },
+        { href: '/admin/announcements', label: 'Manage Announcements', icon: 'Bell' },
+        { href: '/admin/reports', label: 'Reports', icon: 'BarChart3' },
+        { href: '/admin/settings', label: 'System Settings', icon: 'Settings' },
+        { href: '/directory', label: 'Directory', icon: 'BookUser' },
       ];
     case 'student':
       return [
-        { href: '/student', label: 'Dashboard', icon: LayoutDashboard, matchExact: true },
-        { href: '/student/profile', label: 'My Profile', icon: UserCircle },
-        { href: '/student/room', label: 'Room Details', icon: BedDouble },
-        { href: '/student/bookings', label: 'Bookings & Requests', icon: FileText },
-        { href: '/student/documents', label: 'My Documents', icon: UploadCloud },
-        { href: '/student/complaints', label: 'Complaints/Requests', icon: AlertTriangle },
-        { href: '/student/chat', label: 'Chat with Staff', icon: MessageSquare },
-        { href: '/student/announcements', label: 'Announcements', icon: Bell },
-        { href: '/directory', label: 'Directory', icon: BookUser },
+        { href: '/student', label: 'Dashboard', icon: 'LayoutDashboard', matchExact: true },
+        { href: '/student/profile', label: 'My Profile', icon: 'UserCircle' },
+        { href: '/student/room', label: 'Room Details', icon: 'BedDouble' },
+        { href: '/student/bookings', label: 'Bookings & Requests', icon: 'FileText' },
+        { href: '/student/documents', label: 'My Documents', icon: 'UploadCloud' },
+        { href: '/student/complaints', label: 'Complaints/Requests', icon: 'AlertTriangle' },
+        { href: '/student/chat', label: 'Chat with Staff', icon: 'MessageSquare' },
+        { href: '/student/announcements', label: 'Announcements', icon: 'Bell' },
+        { href: '/directory', label: 'Directory', icon: 'BookUser' },
       ];
     case 'staff':
       return [
-        { href: '/staff', label: 'Dashboard', icon: LayoutDashboard, matchExact: true },
-        { href: '/staff/residents', label: 'Manage Residents', icon: Users },
-        { href: '/staff/rooms', label: 'View Rooms', icon: BedDouble },
-        { href: '/staff/maintenance', label: 'Maintenance Tasks', icon: Wrench },
-        { href: '/staff/inventory', label: 'Inventory', icon: Archive },
-        { href: '/staff/visitors', label: 'Visitor Logs', icon: CalendarDays },
-        { href: '/staff/reports', label: 'Generate Reports', icon: BarChart2 },
-        { href: '/staff/announcements', label: 'View Announcements', icon: Bell },
-        { href: '/directory', label: 'Directory', icon: BookUser },
+        { href: '/staff', label: 'Dashboard', icon: 'LayoutDashboard', matchExact: true },
+        { href: '/staff/residents', label: 'Manage Residents', icon: 'Users' },
+        { href: '/staff/rooms', label: 'View Rooms', icon: 'Bed' }, // Using 'Bed' as in staff/layout.tsx
+        { href: '/staff/maintenance', label: 'Maintenance Tasks', icon: 'Wrench' },
+        { href: '/staff/inventory', label: 'Inventory', icon: 'Archive' },
+        { href: '/staff/visitors', label: 'Visitor Logs', icon: 'CalendarDays' },
+        { href: '/staff/reports', label: 'Generate Reports', icon: 'BarChart2' },
+        { href: '/staff/announcements', label: 'View Announcements', icon: 'Bell' },
+        { href: '/directory', label: 'Directory', icon: 'BookUser' },
       ];
     case 'parent':
       return [
-        { href: '/parent', label: 'Dashboard', icon: LayoutDashboard, matchExact: true },
-        { href: '/parent/student-info', label: "Child's Info", icon: UserSearch },
-        { href: '/parent/announcements', label: 'Announcements', icon: Bell },
-        { href: '/directory', label: 'Hostel Directory', icon: BookUser },
+        { href: '/parent', label: 'Dashboard', icon: 'LayoutDashboard', matchExact: true },
+        { href: '/parent/student-info', label: "Child's Info", icon: 'UserSearch' },
+        { href: '/parent/announcements', label: 'Announcements', icon: 'Bell' },
+        { href: '/directory', label: 'Hostel Directory', icon: 'BookUser' },
       ];
     default:
       return [];
