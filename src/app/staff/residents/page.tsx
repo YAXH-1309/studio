@@ -1,0 +1,46 @@
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Users, UserPlus, Search } from "lucide-react";
+import Image from "next/image";
+
+export default function StaffResidentsPage() {
+  return (
+    <div className="space-y-6">
+      <Card className="shadow-lg">
+        <CardHeader>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Users className="h-8 w-8 text-primary" />
+              <CardTitle className="text-2xl">Manage Residents</CardTitle>
+            </div>
+            <div className="flex gap-2">
+              <div className="relative flex-grow md:flex-grow-0">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input type="search" placeholder="Search residents..." className="pl-8 sm:w-[300px]" />
+              </div>
+              <Button>
+                <UserPlus className="mr-2 h-4 w-4" /> Add Resident
+              </Button>
+            </div>
+          </div>
+          <CardDescription>View resident details, manage check-ins/outs, and update information.</CardDescription>
+        </CardHeader>
+        <CardContent className="text-center py-12">
+          <Image 
+            src="https://picsum.photos/seed/staff-residents/400/250" 
+            alt="Residents Management Placeholder" 
+            width={400} 
+            height={250} 
+            className="mx-auto rounded-lg mb-6"
+            data-ai-hint="community people"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+            />
+          <h3 className="text-xl font-semibold mb-2">Resident Management Tools Coming Soon</h3>
+          <p className="text-muted-foreground">This section will provide staff with tools to manage resident information and activities.</p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
