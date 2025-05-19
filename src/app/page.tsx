@@ -33,7 +33,7 @@ export default function HomePage() {
     <PublicLayout>
       <section className="text-center py-12 md:py-20">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-          Welcome to <span className="text-primary">DormFlow</span>
+          Welcome to <span className="text-primary">HOSTEL MANAGEMENT SYSTEM</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
           The all-in-one solution for seamless hostel management. Streamline operations, enhance communication, and create a better living experience.
@@ -49,7 +49,7 @@ export default function HomePage() {
 
       <section className="py-12 md:py-20 bg-secondary/50 rounded-lg">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose DormFlow?</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose HOSTEL MANAGEMENT SYSTEM?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -104,7 +104,7 @@ export default function HomePage() {
       <section className="text-center py-12 md:py-20 bg-primary/10 rounded-lg">
          <h2 className="text-3xl font-bold mb-6">Ready to Simplify Your Hostel Management?</h2>
          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
-           Join DormFlow today and experience the future of efficient and organized hostel living.
+           Join HOSTEL MANAGEMENT SYSTEM today and experience the future of efficient and organized hostel living.
          </p>
          <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
            <Link href="/login?role=admin">

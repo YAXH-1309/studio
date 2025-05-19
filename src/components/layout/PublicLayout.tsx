@@ -13,7 +13,7 @@ export function PublicLayout({ children }: PublicLayoutProps) {
         {children}
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        © {new Date().getFullYear()} DormFlow. All rights reserved.
+        © {new Date().getFullYear()} HOSTEL MANAGEMENT SYSTEM. All rights reserved.
       </footer>
     </div>
   );

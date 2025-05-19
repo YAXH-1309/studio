@@ -126,7 +126,7 @@ export function SidebarNavigation({ navItems, userRole }: SidebarNavigationProps
       {state === "expanded" && (
         <SidebarFooter className="p-2">
           <p className="text-xs text-sidebar-foreground/60 text-center">
-            DormFlow &copy; {new Date().getFullYear()}
+            HOSTEL MANAGEMENT SYSTEM &copy; {new Date().getFullYear()}
           </p>
         </SidebarFooter>
       )}

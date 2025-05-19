@@ -10,7 +10,7 @@ export default function AdminDashboardPage() {
       <Card className="bg-gradient-to-r from-primary/90 to-primary text-primary-foreground shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl">Admin Dashboard</CardTitle>
-          <CardDescription className="text-primary-foreground/80">Welcome, Admin! Oversee and manage all aspects of DormFlow.</CardDescription>
+          <CardDescription className="text-primary-foreground/80">Welcome, Admin! Oversee and manage all aspects of HOSTEL MANAGEMENT SYSTEM.</CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-lg">

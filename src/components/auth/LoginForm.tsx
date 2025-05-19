@@ -51,7 +51,7 @@ export function LoginForm() {
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader>
           <CardTitle className="text-2xl flex items-center gap-2">
-            <LogIn className="h-6 w-6 text-primary" /> DormFlow Login
+            <LogIn className="h-6 w-6 text-primary" /> HOSTEL MANAGEMENT SYSTEM Login
           </CardTitle>
           <CardDescription>Loading login options...</CardDescription>
         </CardHeader>
@@ -64,7 +64,7 @@ export function LoginForm() {
     <Card className="w-full max-w-md shadow-xl">
       <CardHeader>
         <CardTitle className="text-2xl flex items-center gap-2">
-          <LogIn className="h-6 w-6 text-primary" /> DormFlow Login
+          <LogIn className="h-6 w-6 text-primary" /> HOSTEL MANAGEMENT SYSTEM Login
         </CardTitle>
         <CardDescription>Select your role to proceed to your dashboard.</CardDescription>
       </CardHeader>
